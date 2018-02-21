@@ -1,8 +1,8 @@
 Name:                acid-state
-Version:             0.14.0
+Version:             0.14.2
 Synopsis:            Add ACID guarantees to any serializable Haskell data structure.
 Description:         Use regular Haskell data structures as your database and get stronger ACID guarantees than most RDBMS offer.
-Homepage:            http://acid-state.seize.it/
+Homepage:            https://github.com/acid-state/acid-state
 License:             PublicDomain
 Author:              David Himmelstrup
 Maintainer:          Lemmih <lemmih@gmail.com>
@@ -10,6 +10,7 @@ Maintainer:          Lemmih <lemmih@gmail.com>
 Category:            Database
 Build-type:          Simple
 Cabal-version:       >=1.10
+tested-with:         GHC == 7.6.3, GHC == 7.8.4, GHC == 7.10.3, GHC == 8.0.1
 Extra-source-files:
         CHANGELOG.md
         examples/*.hs
@@ -29,6 +30,10 @@ Library
                        Data.Acid.Log, Data.Acid.CRC,
                        Data.Acid.Abstract, Data.Acid.Core
 
+                       Serokell.AcidState.ExtendedState
+                       Serokell.AcidState.Instances
+                       Serokell.AcidState.Util
+
   Other-modules:       Data.Acid.Archive,
                        Paths_acid_state,
                        Data.Acid.TemplateHaskell, Data.Acid.Common, FileIO
@@ -38,14 +43,21 @@ Library
                        bytestring >= 0.10.2,
                        cereal >= 0.4.1.0,
                        containers,
-                       extensible-exceptions,
-                       safecopy >= 0.6,
-                       stm >= 2.4,
                        directory,
+                       filelock,
                        filepath,
+                       exceptions,
+                       extensible-exceptions,
+                       extra,
+                       hashable,
                        mtl,
                        network,
-                       template-haskell
+                       safecopy >= 0.6,
+                       stm >= 2.4,
+                       template-haskell,
+                       th-expand-syns >= 0.4.1 && < 0.5,
+                       time-units,
+                       unordered-containers
 
   if os(windows)
      Build-depends:       Win32
